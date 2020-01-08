@@ -9,7 +9,11 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function (head, prev = null) {
+var reverseList = function (head) {
+    // 保存前进方向
+    // 斩断过去,不忘前事
+    // 继续前行
+
     // let cur = head
     // let prev = null
     // while (cur !== null) {
@@ -24,10 +28,12 @@ var reverseList = function (head, prev = null) {
     // }
     // return prev
 
-    if (head === null || head.next === null) return head
-    const p = reverseList(head.next)
-    head.next.next = head
-    head.next = null
-    return p
+    return reverse(head, null)
+    function reverse(cur, pre) {
+        if (!cur) return pre
+        const next = cur.next
+        cur.next = pre
+        return reverseList(next, cur)
+    }
 
 };
